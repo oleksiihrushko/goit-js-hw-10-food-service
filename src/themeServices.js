@@ -3,10 +3,12 @@ const Theme = {
   DARK: 'dark-theme',
 };
 const savedTheme = localStorage.getItem('theme');
-const inputForCheck = document.querySelector('.js-switch-input');
+const input = document.querySelector('.js-switch-input');
 const body = document.querySelector('body');
 
-export function themeChangeHandler(e) {
+input.addEventListener('change', themeChangeHandler);
+
+function themeChangeHandler(e) {
   if (e.target.checked) {
     body.classList.add(Theme.DARK);
     body.classList.remove(Theme.LIGHT);
@@ -21,6 +23,6 @@ export function themeChangeHandler(e) {
 export function checkLocalStorage() {
   if (savedTheme) {
     body.classList.add(savedTheme);
-    savedTheme === Theme.DARK ? (inputForCheck.checked = true) : '';
+    savedTheme === Theme.DARK ? (input.checked = true) : '';
   }
 }
